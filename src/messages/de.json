@@ -1,0 +1,35 @@
+{
+  "nav": {
+    "features": "Funktionen",
+    "how": "So funktioniert’s",
+    "developers": "Developer Hub",
+    "faq": "FAQ",
+    "download": "App entdecken"
+  },
+  "common": {
+    "save": "Speichern",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "empty": "Hier gibt es noch keine veröffentlichten Einträge.",
+    "unavailable": "Dieser Bereich ist noch nicht eingerichtet. Bitte versuche es später erneut.",
+    "error": "Die Anfrage konnte nicht verarbeitet werden. Bitte versuche es erneut.",
+    "back": "Zurück",
+    "loading": "Wird geladen …"
+  },
+  "feedback": {
+    "title": "Deine Idee macht den Unterschied.",
+    "intro": "Was würde deinen Alltag einfacher machen? Teile eine Idee, eine Frage oder einen Fehler mit uns.",
+    "submit": "Feedback senden",
+    "success": "Danke! Dein Beitrag ist eingegangen und wird vor einer Veröffentlichung geprüft.",
+    "email": "E-Mail (optional)",
+    "privacy": "Bitte keine sensiblen oder personenbezogenen Informationen in Titel und Beschreibung eintragen. Deine E-Mail wird nie veröffentlicht."
+  },
+  "auth": {
+    "title": "Willkommen zurück.",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "login": "Anmelden",
+    "logout": "Abmelden",
+    "invalid": "Anmeldung nicht möglich. Bitte prüfe deine Angaben."
+  }
+}
