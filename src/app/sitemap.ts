@@ -10,9 +10,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       "/downloads",
       "/developers",
       "/developers/news",
-      "/developers/changelog",
-      "/developers/patch-notes",
-      "/developers/roadmap",
+      "/developers/feedback",
     ].map((path) => ({
       url: siteUrl() + path,
       alternates: { languages: { "de-CH": siteUrl() + path } },

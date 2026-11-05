@@ -6,6 +6,7 @@ import { ui } from "@/lib/ui-text";
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   Check,
@@ -74,47 +75,51 @@ export function StoreButtons({ settings: s }: { settings: Settings }) {
   );
   return (
     <div className="store-buttons">
-      {(["apple", "google"] as const).map((store) =>
-        s[store] ? (
-          <a
-            key={store}
-            className={`store ${preferred === store ? "recommended" : ""}`}
-            href={s[store]}
-            onClick={() => track(store)}
-            rel="noopener noreferrer"
-          >
-            <span className="store-symbol" aria-hidden>
-              {store === "apple" ? "●" : "▷"}
-            </span>
-            <span>
-              <small>
-                {preferred === store
-                  ? copy("fur_dein_gerat_empfohlen_843286")
-                  : copy("jetzt_entdecken_im_7b2a1a")}
-              </small>
-              {store === "apple"
-                ? copy("app_store_c4424d")
-                : copy("google_play_027b16")}
-            </span>
-            <ArrowRight size={18} />
-          </a>
-        ) : (
-          <div className="store pending" key={store}>
-            <span className="store-symbol" aria-hidden>
-              {store === "apple" ? "●" : "▷"}
-            </span>
-            <span>
-              <small>{ui("interactive_veroffentlichung_ausstehend_0")}</small>
-              {store === "apple"
-                ? copy("app_store_c4424d")
-                : copy("google_play_027b16")}
-            </span>
+      {(["apple", "google"] as const).map((store) => {
+        const badge = (
+          <Image
+            className={`store-badge ${store}`}
+            src={
+              store === "apple"
+                ? "/images/stores/app-store.svg"
+                : "/images/stores/google-play.png"
+            }
+            alt={
+              store === "apple" ? "Laden im App Store" : "Jetzt bei Google Play"
+            }
+            width={store === "apple" ? 150 : 180}
+            height={store === "apple" ? 50 : 70}
+            unoptimized
+          />
+        );
+        return (
+          <div className="store-item" key={store}>
+            {s[store] ? (
+              <a
+                href={s[store]}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => track(`download_${store}`)}
+              >
+                {badge}
+              </a>
+            ) : (
+              <span aria-disabled="true">{badge}</span>
+            )}
+            <small>
+              {s[store]
+                ? preferred === store
+                  ? "Für dein Gerät empfohlen"
+                  : ""
+                : "Veröffentlichung ausstehend"}
+            </small>
           </div>
-        ),
-      )}
+        );
+      })}
     </div>
   );
 }
+
 export function Demo() {
   const [text, setText] = useState<string>(
     copy("wochenende_mit_freunden_planen_ad1822"),

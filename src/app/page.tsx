@@ -331,10 +331,15 @@ export default async function Home() {
                   </span>
                   <h2>{section.title}</h2>
                 </div>
-                <Link className="button secondary" href="/developers">
-                  {ui("page_zum_developer_hub_28")}
-                  <ArrowRight size={18} />
-                </Link>
+                <div className="development-actions">
+                  <Link className="button secondary" href="/developers">
+                    {ui("page_zum_developer_hub_28")}
+                    <ArrowRight size={18} />
+                  </Link>
+                  <Link className="button" href="/developers/feedback#polls">
+                    Zu den Abstimmungen <ArrowRight size={18} />
+                  </Link>
+                </div>
               </div>
               {news.length ? (
                 <div className="card-grid">
@@ -435,7 +440,20 @@ export default async function Home() {
   };
   return (
     <>
-      {sections.map(show)}
+      {(() => {
+        const ordered = sections.filter(
+          (s) => !["videos", "news"].includes(String(s.data.section)),
+        );
+        const index = ordered.findIndex((s) => s.data.section === "demo");
+        ordered.splice(
+          index < 0 ? ordered.length : index,
+          0,
+          ...["videos", "news"].flatMap((type) =>
+            sections.filter((s) => s.data.section === type),
+          ),
+        );
+        return ordered.map(show);
+      })()}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
